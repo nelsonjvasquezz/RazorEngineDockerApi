@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace RazorLightConsole;
+namespace RazorEngineDockerApi.Infrastructure;
 
 public interface IRazorEngineWrapper
 {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using RazorLight;
 
-namespace RazorLightConsole;
+namespace RazorEngineDockerApi.Infrastructure;
 
 public class RazorLightEngineWrapper : IRazorEngineWrapper
 {
