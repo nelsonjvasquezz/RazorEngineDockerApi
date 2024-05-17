@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RazorLightConsole;
 
 namespace RazorEngineDockerApi
 {
@@ -19,6 +20,7 @@ namespace RazorEngineDockerApi
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddSingleton<IRazorEngineWrapper, RazorLightEngineWrapper>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
