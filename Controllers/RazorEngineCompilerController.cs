@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RazorEngineDockerApi.Infrastructure;
 using System;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace RazorEngineDockerApi.Controllers
@@ -39,7 +40,8 @@ namespace RazorEngineDockerApi.Controllers
             string htmlResult;
             try
             {
-                htmlResult = await _razorEngineWrapper.GetHtmlFromFileAsync("Template.cshtml", new { Name = "Razor Engine" });
+                var dataset = GetSampleDataSet();
+                htmlResult = await _razorEngineWrapper.GetHtmlFromFileAsync("Template.cshtml", dataset);
             }
             catch (Exception ex)
             {
@@ -58,6 +60,22 @@ namespace RazorEngineDockerApi.Controllers
                 message += " | " + GetInnerExceptions(ex.InnerException);
             }
             return message;
+        }
+
+        private static DataSet GetSampleDataSet()
+        {
+            var dataSet = new DataSet();
+            var table = new DataTable("SampleTable");
+
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("Age", typeof(int));
+
+            table.Rows.Add(1, "John Doe", 30);
+            table.Rows.Add(2, "Jane Smith", 25);
+
+            dataSet.Tables.Add(table);
+            return dataSet;
         }
     }
 }
